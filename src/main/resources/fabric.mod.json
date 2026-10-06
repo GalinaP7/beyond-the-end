@@ -1,0 +1,27 @@
+{
+	"schemaVersion": 1,
+	"id": "storysystem",
+	"version": "${version}",
+	"name": "Story System",
+	"description": "A server progression system for Story Points, ranks, tokens, quests, titles, and server lore.",
+	"authors": [
+		"Lithiyana"
+	],
+	"license": "CC0-1.0",
+	"icon": "assets/storysystem/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"com.lithiyana.storysystem.StorySystem"
+		]
+	},
+	"mixins": [
+		"storysystem.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=0.19.3",
+		"minecraft": "~26.2",
+		"java": ">=25",
+		"fabric-api": "*"
+	}
+}
