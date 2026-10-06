@@ -1,3 +1,0 @@
-# Rules
-
-Documentation in progress.
