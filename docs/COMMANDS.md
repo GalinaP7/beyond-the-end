@@ -1,24 +1,20 @@
 # Beyond the End — Command Reference
 
-This page documents the commands currently available in Beyond the End.
-
-Commands are divided into **player commands**, which anyone can use, and **administrator commands**, which require appropriate server permissions.
-
-> Beyond the End is currently in development. Commands may change as new systems are added.
+Commands currently available in Beyond the End.
 
 ---
 
-# Player Commands
+# 🎮 Player Commands
 
 ## `/sp`
 
-Displays your current Story Point total and rank.
+Displays your current Story Points and rank.
 
 ```text
 /sp
 ```
 
-Example output:
+Example:
 
 ```text
 ✦ STORY BOARD ✦
@@ -26,29 +22,15 @@ Example output:
 ⚔ Rank: Wanderer
 ```
 
-Story Points represent permanent lifetime progression and are not spent when Story Tokens are used.
-
 ---
 
 ## `/titles`
 
-Displays your currently equipped title and all titles you have unlocked.
+Displays your equipped title and all titles you have unlocked.
 
 ```text
 /titles
 ```
-
-Example output:
-
-```text
-✦ YOUR TITLES ✦
-Equipped: [Frogleaper]
-Unlocked:
- • Frogleaper
- • Cartographer
-```
-
-A player may unlock multiple titles, but only **one title can be equipped at a time**.
 
 ---
 
@@ -60,31 +42,29 @@ Equips one of your unlocked titles.
 /titles equip frogleaper
 ```
 
-You cannot equip a title you have not unlocked.
-
-Equipping a new title automatically replaces your previously equipped title.
+You can only equip titles you have unlocked. Equipping a new title replaces your currently equipped title.
 
 ---
 
 ## `/titles clear`
 
-Removes your currently equipped title.
+Unequips your current title.
 
 ```text
 /titles clear
 ```
 
-This does **not** remove the title from your unlocked titles.
+The title remains unlocked.
 
 ---
 
-# Administrator Commands
+# ⚙️ Administrator Commands
 
-The following commands require administrator permissions.
+These commands require administrator permissions.
 
----
+## Story Points
 
-## `/sp add <player> <amount>`
+### `/sp add <player> <amount>`
 
 Awards Story Points to a player.
 
@@ -92,46 +72,9 @@ Awards Story Points to a player.
 /sp add <player> 15
 ```
 
-This is the normal command for awarding Story Points.
+This is the normal way to award SP. Any newly reached Token milestones are automatically rewarded, and reaching a new rank triggers a rank-up announcement.
 
-It:
-
-- increases the player's lifetime Story Points;
-- checks whether new 10-SP Token milestones were reached;
-- awards any newly earned physical Story Tokens;
-- updates Token milestone history; and
-- announces a rank-up to the server if the player reached a new rank.
-
-### Example
-
-Suppose a player currently has:
-
-```text
-5 SP
-0 Token milestones paid
-```
-
-Running:
-
-```text
-/sp add <player> 15
-```
-
-brings the player to:
-
-```text
-20 SP
-```
-
-The player crossed the **10 SP** and **20 SP** milestones, so they receive:
-
-```text
-2 Story Tokens
-```
-
----
-
-## `/sp remove <player> <amount>`
+### `/sp remove <player> <amount>`
 
 Removes Story Points from a player.
 
@@ -139,103 +82,57 @@ Removes Story Points from a player.
 /sp remove <player> 10
 ```
 
-This is primarily an administrative correction tool.
+This does not reset previously rewarded Token milestones.
 
-Removing Story Points does **not** lower the player's Token milestone history.
+### `/sp set <player> <amount>`
 
-This prevents previously rewarded Story Point thresholds from being repeatedly crossed to generate additional Tokens.
-
----
-
-## `/sp set <player> <amount>`
-
-Sets a player's Story Point total to an exact value.
+Sets a player's Story Points to an exact value.
 
 ```text
 /sp set <player> 150
 ```
 
-This command does **not** automatically award Story Tokens.
-
-It also does not reset previously paid Token milestones.
-
-This makes it useful for administrative corrections and testing without accidentally creating currency.
+This does not automatically award Story Tokens or reset Token milestone history.
 
 ---
 
-# Story Token Administration
+## 🪙 Story Tokens
 
-## `/token give <player> <amount>`
+### `/token give <player> <amount>`
 
-Manually gives a player physical Story Tokens.
+Gives physical Story Tokens directly to a player.
 
 ```text
 /token give <player> 5
 ```
 
-This gives the player **5 real Story Token items**.
+This does not change the player's Story Points or Token milestone history.
 
-It does **not**:
+### `/token resetmilestones <player>`
 
-- add Story Points;
-- remove Story Points; or
-- change Token milestone history.
-
-This can be used for manual rewards, events, testing, or administrative corrections.
-
----
-
-## `/token resetmilestones <player>`
-
-Resets a player's hidden Token milestone history to zero.
+Resets a player's Token milestone history.
 
 ```text
 /token resetmilestones <player>
 ```
 
-> ⚠️ **Use with caution.**
+> ⚠️ **Use with caution.** Previously reached Token milestones may become eligible for rewards again.
 
-This command is primarily intended for development and testing.
+### `/token syncmilestones <player>`
 
-After resetting milestone history, Story Point milestones the player previously received Tokens for can become eligible again.
-
-This means using `/sp add` afterward may award Tokens for previously reached thresholds.
-
----
-
-## `/token syncmilestones <player>`
-
-Synchronizes a player's Token milestone history with their current Story Point total.
+Synchronizes a player's Token milestone history with their current Story Points.
 
 ```text
 /token syncmilestones <player>
 ```
 
-Conceptually, this tells Beyond the End:
-
-> Assume this player has already received every Story Token they are entitled to through their current Story Point total.
-
-For example, if a player has:
-
-```text
-150 SP
-```
-
-syncing their milestones records:
-
-```text
-15 Token milestones paid
-```
-
-This command does **not** give the player physical Tokens.
-
-It is useful for safely repairing milestone history.
+This does not give physical Tokens.
 
 ---
 
-# Title Administration
+## ⚔ Titles
 
-## `/titles give <player> <title>`
+### `/titles give <player> <title>`
 
 Unlocks a title for a player.
 
@@ -243,17 +140,9 @@ Unlocks a title for a player.
 /titles give <player> frogleaper
 ```
 
-The player can then equip the title using:
+The title is unlocked but not automatically equipped.
 
-```text
-/titles equip frogleaper
-```
-
-Unlocking a title does **not** automatically equip it.
-
----
-
-## `/titles revoke <player> <title>`
+### `/titles revoke <player> <title>`
 
 Removes an unlocked title from a player.
 
@@ -261,59 +150,27 @@ Removes an unlocked title from a player.
 /titles revoke <player> frogleaper
 ```
 
-If the revoked title is currently equipped, it is also unequipped.
-
-The player will no longer be able to equip that title unless it is unlocked again.
+If the title is currently equipped, it is also unequipped.
 
 ---
 
-# Command Summary
+# Quick Reference
 
 | Command | Access | Purpose |
 |---|---|---|
-| `/sp` | Everyone | View your Story Points and rank |
-| `/titles` | Everyone | View unlocked and equipped titles |
-| `/titles equip <title>` | Everyone | Equip an unlocked title |
-| `/titles clear` | Everyone | Unequip your current title |
-| `/sp add <player> <amount>` | Admin | Award SP and eligible Tokens |
+| `/sp` | Player | View Story Points and rank |
+| `/titles` | Player | View your titles |
+| `/titles equip <title>` | Player | Equip an unlocked title |
+| `/titles clear` | Player | Unequip your title |
+| `/sp add <player> <amount>` | Admin | Award SP |
 | `/sp remove <player> <amount>` | Admin | Remove SP |
-| `/sp set <player> <amount>` | Admin | Set exact SP |
-| `/token give <player> <amount>` | Admin | Give physical Story Tokens manually |
+| `/sp set <player> <amount>` | Admin | Set SP |
+| `/token give <player> <amount>` | Admin | Give Story Tokens |
 | `/token resetmilestones <player>` | Admin | Reset Token milestone history |
-| `/token syncmilestones <player>` | Admin | Sync milestone history to current SP |
+| `/token syncmilestones <player>` | Admin | Sync Token milestone history |
 | `/titles give <player> <title>` | Admin | Unlock a title |
 | `/titles revoke <player> <title>` | Admin | Revoke a title |
 
 ---
 
-# Placeholder Reference
-
-Arguments surrounded by `< >` should be replaced with actual values when running a command.
-
-For example:
-
-```text
-<player> = the target player's Minecraft username
-<amount> = a number
-<title>  = a valid Beyond the End title
-```
-
-So:
-
-```text
-/sp add <player> 15
-```
-
-means:
-
-> Add 15 Story Points to the selected player.
-
-Do not type the `< >` brackets when actually running the command.
-
----
-
-## Development Status
-
-This command reference describes the currently implemented Beyond the End systems.
-
-Additional commands will be documented here as new systems are developed.
+`<player>`, `<amount>`, and `<title>` represent values you replace when running the command. Do not include the `< >` brackets.
