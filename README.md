@@ -6,196 +6,76 @@ You crossed the Nether. You defeated the Ender Dragon. You took to the skies wit
 
 **What now?**
 
-Beyond the End is a multiplayer progression and storytelling mod designed for established Minecraft worlds that have reached the end of vanilla progression. It adds new goals, persistent progression, physical currency, ranks, titles, and a framework for an evolving shared history.
+Beyond the End is a multiplayer progression and storytelling mod designed for established Minecraft worlds that have reached the end of vanilla progression.
+
+It gives players new reasons to keep exploring, building, accomplishing, and shaping their world together through persistent progression, rewards, and an evolving shared history.
 
 **The End wasn't the finale. It was the prologue.**
 
-> **Development Status:** Beyond the End is currently a work in progress.  
-> Features, commands, progression values, and compatibility requirements may change during development.
+> 🚧 **Beyond the End is currently in active development.**
 
 ---
 
-## ✦ Current Features
+## ✦ Beyond the End
 
-### ⭐ Story Points
+Beyond the End adds a new progression layer on top of an existing Minecraft world:
 
-Story Points (SP) represent a player's permanent lifetime progression.
+- ⭐ **Story Points** — permanent progression earned through accomplishments and contributions
+- 🪙 **Story Tokens** — physical currency earned through progression and used for rewards
+- ⚔ **Ranks** — major milestones reached as your Story Points grow
+- ⚔ **Titles** — collectible accomplishments that can be unlocked and equipped
+- 📖 **Story** — an evolving history shaped by the players and the world
 
-Players can earn SP through server activities such as quests, projects, achievements, events, and other contributions.
+The current progression system is only the foundation. Beyond the End is designed to expand as the world continues.
 
-Story Points are not spendable currency. Once earned through normal gameplay, they represent the player's long-term progress through Beyond the End.
+For a full explanation of progression, see **[Story Points & Progression](docs/STORY-POINTS.md)**.
 
-**Status:** ✅ Implemented
-
----
-
-### 🪙 Story Tokens
-
-Story Tokens are physical items that act as the spendable currency of Beyond the End.
-
-For every **10 lifetime Story Points**, a player earns **1 Story Token**.
-
-For example:
-
-- 10 SP → 1 Token earned
-- 50 SP → 5 Tokens earned
-- 150 SP → 15 Tokens earned
-
-Spending Tokens does **not** reduce Story Points.
-
-The system also tracks which SP milestones have already awarded Tokens so that previously earned milestones cannot normally be claimed repeatedly.
-
-**Status:** ✅ Implemented
+For the story and Chronicle, see **[Lore](docs/LORE.md)**.
 
 ---
 
-### ⚔ Ranks
+## 🔮 What's Next?
 
-Ranks represent major lifetime Story Point milestones.
-
-| Story Points | Rank |
-|---:|---|
-| 0 | Unranked |
-| 100 | Wanderer |
-| 300 | Adventurer |
-| 500 | Explorer |
-| 1,000 | Pathfinder |
-| 2,000 | Hero |
-| 3,000 | Champion |
-| 5,000 | Legend |
-| 10,000 | Mythic |
-| ??? | ??? |
-
-When a player reaches a new rank through a Story Point reward, the achievement is announced to the server.
-
-**Status:** ✅ Implemented
-
----
-
-### ⚔ Titles
-
-Titles are collectible accomplishments that players can unlock independently from their rank.
-
-A player may unlock multiple titles, but can only have **one title equipped at a time**.
-
-Players cannot equip titles they have not earned.
-
-Current development titles include:
-
-- Frogleaper
-- Cartographer
-- Architect
-- OSHA Violation
-- Professional Menace
-
-Some titles may be hidden until discovered.
-
-**Status:** ✅ Backend implemented  
-**Nametag display:** 🚧 In development
-
----
-
-## 📖 Planned Systems
-
-Beyond the End is intended to grow beyond a progression counter into a framework for continuing the life and history of an established Minecraft world.
-
-Planned systems currently include:
+Beyond the End is planned to grow beyond its core progression system with features such as:
 
 - 📜 Quests and challenges
 - 🏆 Achievements
 - 🧭 Professions
-- 📬 Community suggestions and voting
 - 🏗 Community projects
-- 🪙 Player shops and Token spending
-- ✨ Wish Shrine rewards
-- 📚 Server Chronicle and recorded world history
+- 📬 Suggestions and voting
+- 🪙 Player shops and Token rewards
+- ✨ Wish Shrine
+- 📚 World chronicles and history
 - 🏴 Bounties and Infamy
-- ⚔ Expanded titles and progression rewards
-- 📖 In-game guides and rule books
-
-These systems are **planned concepts and are not necessarily implemented yet.**
-
----
-
-## 📜 The Story
-
-### Chapter I — THE END?
-
-*If you are reading this, you have crossed the Nether.*
-
-*You have defeated the Ender Dragon.*
-
-*You have taken to the skies with Elytra.*
-
-*You have built homes, raised beacons, gathered riches, and conquered nearly everything this world was supposed to offer.*
-
-*So there is only one question left.*
-
-***What now?***
-
-*Defeating the Ender Dragon wasn't the story's finale, it was only the beginning.*
-
-*It was the prologue.*
-
----
-
-## 🎮 Commands
-
-Beyond the End currently includes commands for Story Points, Story Tokens, and Titles.
-
-### Player Commands
-
-```text
-/sp
-
-/titles
-/titles equip <title>
-/titles clear
-```
-
-### Administrator Commands
-
-```text
-/sp add <player> <amount>
-/sp remove <player> <amount>
-/sp set <player> <amount>
-
-/token give <player> <amount>
-/token resetmilestones <player>
-/token syncmilestones <player>
-
-/titles give <player> <title>
-/titles revoke <player> <title>
-```
-
-A complete explanation of each command will be maintained in [`docs/COMMANDS.md`](docs/COMMANDS.md).
+- ⚔ More titles and progression rewards
 
 ---
 
 ## 🛠 Installation
 
-Beyond the End is currently developed for:
+Beyond the End currently requires:
 
-- **Minecraft:** 26.2
-- **Mod Loader:** Fabric
-- **Fabric Loader:** 0.19.3+
-- **Fabric API:** 0.154.2+26.2
+| Requirement | Version |
+|---|---|
+| Minecraft | 26.2 |
+| Mod Loader | Fabric |
+| Fabric Loader | 0.19.3+ |
+| Fabric API | 0.154.2+26.2 |
 
-Beyond the End is currently under active development and is **not yet intended as a stable public release**.
-
-Installation requirements may change as development continues.
-
-A full installation guide will be maintained in [`docs/INSTALLATION.md`](docs/INSTALLATION.md).
+For setup instructions, see **[Installation](docs/INSTALLATION.md)**.
 
 ---
 
-## 🧩 Compatibility
+## 📚 Documentation
 
-Beyond the End is currently a **Fabric mod**.
-
-It is not currently available for Forge or NeoForge.
-
-Minecraft updates, Fabric API changes, and changes to Minecraft's internal rendering code may require new versions of Beyond the End. Compatibility information will be documented for each future release.
+| Guide | Description |
+|---|---|
+| **[Installation](docs/INSTALLATION.md)** | Install Beyond the End |
+| **[Commands](docs/COMMANDS.md)** | Player and administrator commands |
+| **[Story Points & Progression](docs/STORY-POINTS.md)** | SP, Tokens, ranks, and titles |
+| **[Rules](docs/RULES.md)** | Gameplay and community rules |
+| **[Lore](docs/LORE.md)** | Story and world Chronicle |
+| **[Development](docs/DEVELOPMENT.md)** | Technical architecture and development notes |
 
 ---
 
@@ -204,68 +84,14 @@ Minecraft updates, Fabric API changes, and changes to Minecraft's internal rende
 | System | Status |
 |---|---|
 | Story Points | ✅ Implemented |
-| Persistent SP storage | ✅ Implemented |
-| Physical Story Tokens | ✅ Implemented |
-| Automatic Token milestones | ✅ Implemented |
+| Story Tokens | ✅ Implemented |
 | Ranks | ✅ Implemented |
-| Rank-up announcements | ✅ Implemented |
-| Unlockable Titles | ✅ Implemented |
-| Equipped Title system | ✅ Implemented |
-| Persistent Title storage | ✅ Implemented |
-| Rank/SP nametag | 🚧 In development |
-| Equipped Title nametag | 🚧 Planned |
-| Quests | 📋 Planned |
-| Achievements | 📋 Planned |
+| Titles | ✅ Implemented |
+| Rank/SP Nametags | 🚧 In Development |
+| Title Nametags | 📋 Planned |
+| Quests & Achievements | 📋 Planned |
 | Professions | 📋 Planned |
-| Voting / Suggestions | 📋 Planned |
-| Wish Shrine | 📋 Planned |
-| Server Chronicle | 📋 Planned |
-| Bounties / Infamy | 📋 Planned |
-| In-game guide / rules | 📋 Planned |
-
----
-
-## 📚 Documentation
-
-More detailed documentation is being developed alongside the mod.
-
-Documentation will include:
-
-- [`docs/INSTALLATION.md`](docs/INSTALLATION.md) — installation and compatibility
-- [`docs/COMMANDS.md`](docs/COMMANDS.md) — complete command reference
-- [`docs/STORY-POINTS.md`](docs/STORY-POINTS.md) — progression, ranks, and Token mechanics
-- [`docs/RULES.md`](docs/RULES.md) — gameplay and community rules
-- [`docs/LORE.md`](docs/LORE.md) — Beyond the End story and Chronicle
-- [`docs/DEVELOPMENT.md`](docs/DEVELOPMENT.md) — technical architecture and development notes
-
----
-
-## 💻 Development
-
-Beyond the End is being built in Java using Fabric.
-
-The project currently includes server-side progression systems as well as experimental client-side rendering features.
-
-Development follows a simple workflow:
-
-```text
-Code
-  ↓
-Build
-  ↓
-Test in Minecraft
-  ↓
-Update documentation
-  ↓
-Commit to Git
-```
-
----
-
-## ⚠️ Development Notice
-
-Beyond the End is an early work in progress.
-
-The project is currently being developed and tested on a private Minecraft server. Systems may be redesigned, commands may change, save formats may change, and unfinished features may contain bugs.
-
-The repository currently represents active development rather than a finished public release.
+| Community Systems | 📋 Planned |
+| Shops & Token Rewards | 📋 Planned |
+| World Chronicle | 📋 Planned |
+| Bounties & Infamy | 📋 Planned |
