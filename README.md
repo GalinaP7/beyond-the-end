@@ -87,8 +87,8 @@ For setup instructions, see **[Installation](docs/INSTALLATION.md)**.
 | Story Tokens | ✅ Implemented |
 | Ranks | ✅ Implemented |
 | Titles | ✅ Implemented |
-| Rank/SP Nametags | 🚧 In Development |
-| Title Nametags | 📋 Planned |
+| Rank/SP Nametags | ✅ Implemented |
+| Title Nametags | 🚧 In Development |
 | Quests & Achievements | 📋 Planned |
 | Professions | 📋 Planned |
 | Community Systems | 📋 Planned |
