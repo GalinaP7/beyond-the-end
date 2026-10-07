@@ -48,7 +48,7 @@ Obtain the current Beyond the End `.jar` file.
 During development, the file may have a name similar to:
 
 ```text
-storysystem-1.0.1.jar
+storysystem-1.0.2.jar
 ```
 
 > **Do not extract the `.jar` file.**
@@ -79,7 +79,7 @@ Your folder should look roughly like:
 your-profile/
 └── mods/
     ├── fabric-api-....jar
-    ├── storysystem-1.0.1.jar
+    ├── storysystem-1.0.2.jar
     └── other-mods....
 ```
 
@@ -196,7 +196,7 @@ A typical server setup will look roughly like:
 server/
 ├── mods/
 │   ├── fabric-api-....jar
-│   └── storysystem-1.0.1.jar
+│   └── storysystem-1.0.2.jar
 ├── config/
 ├── world/
 └── ...
