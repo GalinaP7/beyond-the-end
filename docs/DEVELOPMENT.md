@@ -31,14 +31,20 @@ src/main/java/com/lithiyana/storysystem/
 ├── RankManager.java
 ├── Title.java
 ├── TitleManager.java
-└── ModItems.java
+├── ModItems.java
+├── StoryDataPayload.java
+└── StoryNetworking.java
 ```
 
 Client-only features are kept separately:
 
 ```text
 src/client/java/com/lithiyana/storysystem/
+├── ClientStoryData.java
+├── StorySystemClient.java
+├── StoryAvatarRenderState.java
 └── mixin/
+    ├── AvatarRenderStateMixin.java
     └── PlayerNameTagMixin.java
 ```
 
@@ -107,11 +113,11 @@ Title data stores unlocked and equipped titles.
 
 Most Beyond the End progression logic runs on the **server**.
 
-Client-side code is used for features that require rendering, such as custom player nametags.
+Client-side code handles features that require rendering, such as custom player nametags.
 
-The current nametag system uses a client-side mixin targeting Minecraft's player rendering system.
+Story Point data is synchronized from the server to connected clients. Clients use this data to render each player's current rank and lifetime SP beneath their username.
 
-Server progression data will need to be synchronized to clients before ranks, SP, and equipped titles can be rendered correctly above players.
+Equipped titles are not yet synchronized to clients and will be added to the nametag system in a future update.
 
 ---
 
@@ -132,7 +138,7 @@ build/libs/
 The normal mod file will look similar to:
 
 ```text
-storysystem-1.0.0.jar
+storysystem-<version>.jar
 ```
 
 Do not install the `-sources.jar` file as the mod.
@@ -168,8 +174,9 @@ The core progression backend is implemented:
 - ✅ Ranks
 - ✅ Rank-up announcements
 - ✅ Title unlocking and equipping
-- 🚧 Player nametag rendering
-- 📋 Server-to-client progression synchronization
+- ✅ Server-to-client SP synchronization
+- ✅ Rank/SP nametags
+- 📋 Title nametags
 - 📋 Quests and achievements
 - 📋 Professions and community systems
 
