@@ -88,8 +88,8 @@ For setup instructions, see **[Installation](docs/INSTALLATION.md)**.
 | Ranks | ✅ Implemented |
 | Titles | ✅ Implemented |
 | Rank/SP Nametags | ✅ Implemented |
-| Title Nametags | 🚧 In Development |
-| Quests & Achievements | 📋 Planned |
+| Title Nametags | ✅ Implemented |
+| Quests & Achievements | 🚧 In Development |
 | Professions | 📋 Planned |
 | Community Systems | 📋 Planned |
 | Shops & Token Rewards | 📋 Planned |
