@@ -98,6 +98,7 @@ Wanderer ✦ 150 SP
 ```
 
 A player can unlock multiple titles but equip only one at a time.
+Equipped title appears beside the player's username.
 
 ---
 
