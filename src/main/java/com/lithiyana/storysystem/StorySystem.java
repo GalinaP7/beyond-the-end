@@ -39,6 +39,8 @@ public class StorySystem implements ModInitializer {
         // Load all saved title data.
         TitleManager.load();
 
+		StoryNetworking.initialize();
+
 
         CommandRegistrationCallback.EVENT.register(
             (dispatcher, registryAccess, environment) -> {
@@ -204,6 +206,11 @@ public class StorySystem implements ModInitializer {
                                                     .getStoryPoints(
                                                         target.getUUID()
                                                     );
+
+											StoryNetworking.syncPlayerToEveryone(
+												context.getSource().getServer(),
+												target
+											);
 
                                             String newRank =
                                                 RankManager.getRank(
@@ -441,6 +448,11 @@ public class StorySystem implements ModInitializer {
                                                         target.getUUID()
                                                     );
 
+											StoryNetworking.syncPlayerToEveryone(
+												context.getSource().getServer(),
+												target
+											);
+
 
                                             context.getSource().sendSuccess(
 
@@ -556,6 +568,10 @@ public class StorySystem implements ModInitializer {
                                                         target.getUUID()
                                                     );
 
+											StoryNetworking.syncPlayerToEveryone(
+												context.getSource().getServer(),
+												target
+											);
 
                                             context.getSource().sendSuccess(
 

@@ -13,7 +13,11 @@
 	"entrypoints": {
 		"main": [
 			"com.lithiyana.storysystem.StorySystem"
-		]
+		],
+		"client": [
+        "com.lithiyana.storysystem.StorySystemClient"
+	]
+
 	},
 	"mixins": [
 		"storysystem.mixins.json"

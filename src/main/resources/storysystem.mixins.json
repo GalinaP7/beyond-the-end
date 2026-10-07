@@ -1,14 +1,15 @@
 {
-	"required": true,
-	"package": "com.lithiyana.storysystem.mixin",
-	"compatibilityLevel": "JAVA_25",
-	"client": [
-		"PlayerNameTagMixin"
-	],
-	"injectors": {
-		"defaultRequire": 1
-	},
-	"overwrites": {
-		"requireAnnotations": true
-	}
+    "required": true,
+    "package": "com.lithiyana.storysystem.mixin",
+    "compatibilityLevel": "JAVA_25",
+    "client": [
+        "AvatarRenderStateMixin",
+        "PlayerNameTagMixin"
+    ],
+    "injectors": {
+        "defaultRequire": 1
+    },
+    "overwrites": {
+        "requireAnnotations": true
+    }
 }
