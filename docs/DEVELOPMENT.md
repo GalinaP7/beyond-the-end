@@ -176,7 +176,7 @@ The core progression backend is implemented:
 - ✅ Title unlocking and equipping
 - ✅ Server-to-client SP synchronization
 - ✅ Rank/SP nametags
-- 📋 Title nametags
+- ✅ Title nametags
 - 📋 Quests and achievements
 - 📋 Professions and community systems
 
