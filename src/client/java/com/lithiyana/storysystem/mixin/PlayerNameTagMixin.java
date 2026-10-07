@@ -3,6 +3,7 @@ package com.lithiyana.storysystem.mixin;
 import com.lithiyana.storysystem.ClientStoryData;
 import com.lithiyana.storysystem.RankManager;
 import com.lithiyana.storysystem.StoryAvatarRenderState;
+import com.lithiyana.storysystem.Title;
 
 import java.util.UUID;
 
@@ -17,12 +18,21 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.Avatar;
 
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(AvatarRenderer.class)
 public abstract class PlayerNameTagMixin {
+
+    // =========================================================
+    // TEMPORARY STORAGE FOR THE ORIGINAL VANILLA NAMETAG
+    // =========================================================
+
+    @Unique
+    private Component storysystem$originalNameTag;
+
 
     // =========================================================
     // COPY THE PLAYER UUID INTO THE RENDER STATE
@@ -47,14 +57,14 @@ public abstract class PlayerNameTagMixin {
 
 
     // =========================================================
-    // MOVE THE ENTIRE NAMETAG BLOCK UP
+    // PREPARE THE NAMETAG
     // =========================================================
 
     @Inject(
         method = "submitNameDisplay(Lnet/minecraft/client/renderer/entity/state/AvatarRenderState;Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/SubmitNodeCollector;Lnet/minecraft/client/renderer/state/level/CameraRenderState;)V",
         at = @At("HEAD")
     )
-    private void storysystem$raiseNameTag(
+    private void storysystem$prepareNameTag(
         AvatarRenderState state,
         PoseStack poseStack,
         SubmitNodeCollector collector,
@@ -62,9 +72,68 @@ public abstract class PlayerNameTagMixin {
         CallbackInfo ci
     ) {
 
+        // Save the original vanilla username so we can restore it
+        // after Minecraft finishes rendering this nametag.
+        storysystem$originalNameTag =
+            state.nameTag;
+
+
+        // -----------------------------------------------------
+        // ADD EQUIPPED TITLE TO THE VANILLA USERNAME
+        // -----------------------------------------------------
+
+        UUID playerUUID =
+            ((StoryAvatarRenderState) state)
+                .storysystem$getPlayerUUID();
+
+
+        if (
+            playerUUID != null
+            && state.nameTag != null
+        ) {
+
+            Title equippedTitle =
+                ClientStoryData.getEquippedTitle(
+                    playerUUID
+                );
+
+
+            if (equippedTitle != null) {
+
+                state.nameTag =
+                    state.nameTag.copy()
+                        .append(
+                            Component.literal(
+                                " ["
+                            ).withStyle(
+                                ChatFormatting.GRAY
+                            )
+                        )
+                        .append(
+                            Component.literal(
+                                equippedTitle.getDisplayName()
+                            ).withStyle(
+                                equippedTitle.getColor()
+                            )
+                        )
+                        .append(
+                            Component.literal(
+                                "]"
+                            ).withStyle(
+                                ChatFormatting.GRAY
+                            )
+                        );
+            }
+        }
+
+
+        // -----------------------------------------------------
+        // MOVE THE ENTIRE TWO-LINE BLOCK UP
+        // -----------------------------------------------------
+
         poseStack.pushPose();
 
-        // Moves BOTH the username and Story System line upward.
+        // Keep the positioning that already looked good.
         poseStack.translate(
             0.0,
             0.15,
@@ -111,6 +180,7 @@ public abstract class PlayerNameTagMixin {
             ClientStoryData.getStoryPoints(
                 playerUUID
             );
+
 
         String rank =
             RankManager.getRank(
@@ -164,14 +234,14 @@ public abstract class PlayerNameTagMixin {
 
 
     // =========================================================
-    // RESTORE THE POSE STACK
+    // RESTORE THE NAMETAG AND POSE STACK
     // =========================================================
 
     @Inject(
         method = "submitNameDisplay(Lnet/minecraft/client/renderer/entity/state/AvatarRenderState;Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/SubmitNodeCollector;Lnet/minecraft/client/renderer/state/level/CameraRenderState;)V",
         at = @At("RETURN")
     )
-    private void storysystem$restoreNameTagPosition(
+    private void storysystem$restoreNameTag(
         AvatarRenderState state,
         PoseStack poseStack,
         SubmitNodeCollector collector,
@@ -179,6 +249,15 @@ public abstract class PlayerNameTagMixin {
         CallbackInfo ci
     ) {
 
+        // Restore the original vanilla username.
+        state.nameTag =
+            storysystem$originalNameTag;
+
+        storysystem$originalNameTag =
+            null;
+
+
+        // Undo our vertical nametag translation.
         poseStack.popPose();
     }
 }

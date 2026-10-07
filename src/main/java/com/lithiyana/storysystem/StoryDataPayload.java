@@ -9,7 +9,8 @@ import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
 
 public record StoryDataPayload(
     UUID playerUUID,
-    int storyPoints
+    int storyPoints,
+    String equippedTitleId
 ) implements CustomPacketPayload {
 
     public static final Type<StoryDataPayload> TYPE =
@@ -43,6 +44,9 @@ public record StoryDataPayload(
 
         ByteBufCodecs.VAR_INT,
         StoryDataPayload::storyPoints,
+
+        ByteBufCodecs.STRING_UTF8,
+        StoryDataPayload::equippedTitleId,
 
         StoryDataPayload::new
     );

@@ -1093,6 +1093,12 @@ public class StorySystem implements ModInitializer {
                                             title
                                         );
 
+										// Immediately update everyone's nametag data.
+										StoryNetworking.syncPlayerToEveryone(
+											context.getSource().getServer(),
+											player
+										);
+
 
                                         context.getSource().sendSuccess(
 
@@ -1174,6 +1180,12 @@ public class StorySystem implements ModInitializer {
                                         .clearEquippedTitle(
                                             player.getUUID()
                                         );
+
+									// Immediately remove the title from everyone's nametag.
+									StoryNetworking.syncPlayerToEveryone(
+										context.getSource().getServer(),
+										player
+									);
 
 
                                     context.getSource().sendSuccess(
@@ -1478,7 +1490,6 @@ public class StorySystem implements ModInitializer {
                                                     title
                                                 );
 
-
                                             if (!removed) {
 
                                                 context.getSource()
@@ -1500,6 +1511,12 @@ public class StorySystem implements ModInitializer {
                                                 return 0;
                                             }
 
+											// The revoked title may have been equipped,
+											// so update everyone's nametag data.
+											StoryNetworking.syncPlayerToEveryone(
+												context.getSource().getServer(),
+												target
+											);
 
                                             context.getSource().sendSuccess(
 

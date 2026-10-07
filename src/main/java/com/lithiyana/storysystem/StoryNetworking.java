@@ -11,13 +11,7 @@ public class StoryNetworking {
 
     public static void initialize() {
 
-        // Register the packet type.
-        //
-        // "clientbound" means:
-        //
-        // SERVER -> CLIENT
-        //
-        // which is exactly what Story System needs here.
+        // Register Story System's server -> client packet.
         PayloadTypeRegistry
             .clientboundPlay()
             .register(
@@ -26,11 +20,10 @@ public class StoryNetworking {
             );
 
 
-        // Whenever a player joins, send the current Story Point
-        // data for every online player to them.
+        // When somebody joins:
         //
-        // We also send the joining player's data to everybody
-        // already online.
+        // 1. Send every online player's Story data to them.
+        // 2. Send their Story data to everybody already online.
         ServerPlayConnectionEvents.JOIN.register(
             (handler, sender, server) -> {
 
@@ -65,11 +58,26 @@ public class StoryNetworking {
                 storyPlayer.getUUID()
             );
 
+
+        Title equippedTitle =
+            TitleManager.getEquippedTitle(
+                storyPlayer.getUUID()
+            );
+
+
+        String equippedTitleId =
+            equippedTitle == null
+                ? "none"
+                : equippedTitle.getId();
+
+
         StoryDataPayload payload =
             new StoryDataPayload(
                 storyPlayer.getUUID(),
-                storyPoints
+                storyPoints,
+                equippedTitleId
             );
+
 
         ServerPlayNetworking.send(
             receiver,

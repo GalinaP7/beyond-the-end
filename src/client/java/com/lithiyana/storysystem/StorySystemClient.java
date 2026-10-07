@@ -9,6 +9,10 @@ public class StorySystemClient implements ClientModInitializer {
     @Override
     public void onInitializeClient() {
 
+        // =====================================================
+        // RECEIVE STORY DATA FROM THE SERVER
+        // =====================================================
+
         ClientPlayNetworking.registerGlobalReceiver(
             StoryDataPayload.TYPE,
 
@@ -18,14 +22,25 @@ public class StorySystemClient implements ClientModInitializer {
                     payload.playerUUID(),
                     payload.storyPoints()
                 );
+
+
+                ClientStoryData.setEquippedTitle(
+                    payload.playerUUID(),
+                    payload.equippedTitleId()
+                );
             }
         );
 
 
-        // Prevent data from one server/world hanging around
-        // after the client disconnects.
+        // =====================================================
+        // CLEAR CACHED DATA WHEN LEAVING A SERVER
+        // =====================================================
+
+        // Prevent Story data from one server/world hanging
+        // around after the client disconnects.
         ClientPlayConnectionEvents.DISCONNECT.register(
             (handler, client) -> {
+
                 ClientStoryData.clear();
             }
         );
